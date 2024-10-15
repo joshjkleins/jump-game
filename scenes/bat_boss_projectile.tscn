@@ -1,0 +1,81 @@
+[gd_scene load_steps=12 format=3 uid="uid://bqu00da8wo4dt"]
+
+[ext_resource type="Script" path="res://scripts/bat_boss_projectile.gd" id="1_ji1k5"]
+[ext_resource type="Texture2D" uid="uid://c258b4v28h31d" path="res://art/Enemies/Bat/Flying (46x30).png" id="1_wk16a"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ejpjq"]
+atlas = ExtResource("1_wk16a")
+region = Rect2(0, 0, 46, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8hari"]
+atlas = ExtResource("1_wk16a")
+region = Rect2(46, 0, 46, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pksw3"]
+atlas = ExtResource("1_wk16a")
+region = Rect2(92, 0, 46, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_67b3m"]
+atlas = ExtResource("1_wk16a")
+region = Rect2(138, 0, 46, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n7t3a"]
+atlas = ExtResource("1_wk16a")
+region = Rect2(184, 0, 46, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0d4nd"]
+atlas = ExtResource("1_wk16a")
+region = Rect2(230, 0, 46, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kysyc"]
+atlas = ExtResource("1_wk16a")
+region = Rect2(276, 0, 46, 30)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3q5ce"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ejpjq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8hari")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pksw3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_67b3m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n7t3a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0d4nd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kysyc")
+}],
+"loop": true,
+"name": &"fly",
+"speed": 20.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5yi1p"]
+
+[node name="BatBossProjectile" type="Area2D"]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_ji1k5")
+damage = 5
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_3q5ce")
+animation = &"fly"
+autoplay = "fly"
+frame = 5
+frame_progress = 0.974367
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_5yi1p")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
